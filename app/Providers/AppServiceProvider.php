@@ -22,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define("delete-task", function () {
-            return Auth::user()->role === "admin";
-        });
+        // Gate::define("delete-task", function () {
+        //     return Auth::user()->role === "admin";
+        // });
 
         // Gate::define("update-task", function ($user, Task $task) {
         //     return $user->id === $task->user_id || $user->role === "admin";

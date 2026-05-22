@@ -57,11 +57,13 @@ class TaskController extends Controller
     }
 
     //delete task
-    public function destroy($id) {
-        if (! Gate::allows('delete-task', $id)) {
+    public function destroy(Request $request, $id) {
+        $task = Task::find($id);
+
+        if ($request->user()->cannot('delete', $task)) {
             abort(403);
         }
-        $task = Task::find($id);
+
         $task->delete();
 
         return redirect()->route('dashboard')->with('success','Task deleted successfully');
